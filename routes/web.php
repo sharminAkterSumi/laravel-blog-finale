@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\postcontroller;
 use App\Http\Controllers\todocontroller;
+use App\Http\Controllers\backend\Rolecontroller;
+use App\Http\Controllers\SocioalLogincontroller;
 use App\Http\Controllers\frontend\homecontroller;
 use App\Http\Controllers\backend\categorycontroller;
 use App\Http\Controllers\backend\dashboardcontroller;
-use App\Http\Controllers\backend\Rolecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +68,8 @@ Route::post('/store',[postcontroller::class,'store'])->name('store');
 Route::get('/all-posts', [postcontroller::class, 'allPosts'])->name('all');
 
 });
+
+Route::get('/google/login',[SocioalLogincontroller::class,'googlelogin'])->name('google.login');
+Route::get('/google/redirect',[SocioalLogincontroller::class,'googleredirect'])->name('google.redirect');
 
 });
