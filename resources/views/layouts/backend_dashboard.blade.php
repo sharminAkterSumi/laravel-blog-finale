@@ -118,7 +118,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('post.add')}}" class="side-menu">
+                                <a href="{{route('post.all')}}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="side-menu__title" >View All post </div>
                                 </a>

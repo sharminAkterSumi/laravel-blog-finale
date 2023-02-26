@@ -69,4 +69,13 @@ class postcontroller extends Controller
          // $addposts->img=$image;
         }
      }
+
+
+
+     public function allPosts()
+     {
+         $posts = addpost::where('user_id', auth()->user()->id)->get();
+         return view('backend.post.allPost',compact('posts'));
+     }
+ 
 }

@@ -20,17 +20,19 @@ use App\Http\Controllers\backend\Rolecontroller;
 |
 */
 
+Auth::routes();
 Route::get('/', [homecontroller::class,'index'])->name('frontend.home');
 Route::get('/search', [homecontroller::class, 'searchPost'])->name('frontend.search');
-
-Auth::routes();
+Route::get('/front/category/{category:slug}', [homecontroller::class, 'showCategoryPost'])->name('frontend.category');
+Route::get('/front/subcategory/{subcategory:slug}', [homecontroller::class, 'showSubCategoryPost'])->name('frontend.subcategory');
+Route::get('/post/{slug}', [homecontroller::class, 'showPost'])->name('frontend.show');
 Route::middleware('auth')->group(function(){
 
 
 
 Route::get('/home', [dashboardcontroller::class, 'index'])->name('dashboard');
 
-Auth::routes();
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Caregory
@@ -47,6 +49,11 @@ Route::prefix('/role')->name('role.')->group(function(){
 Route::prefix('/category')->name('category.')->group(function(){
     Route::get('/add',[categorycontroller::class, 'add'])->name('add');
     Route::post('/category_store',[categorycontroller::class, 'store'])->name('store');
+    Route::get('/edit/{category:slug}', [categorycontroller::class, 'editCategory'])->name('edit');
+    Route::put('/update/{category:slug}', [categorycontroller::class, 'updateCategory'])->name('update');
+    Route::delete('/delete/{category:slug}', [categorycontroller::class, 'deleteCategory'])->name('delete');
+
+
     Route::get('/sub',[categorycontroller::class, 'subAdd'])->name('sub.add');
     Route::post('/category_store/sub',[categorycontroller::class, 'storeSub'])->name('sub.store');
 
@@ -57,6 +64,7 @@ Route::prefix('/posts')->name('post.')->group(function(){
 
 Route::get('/add',[postcontroller::class,'addpost'])->name('add');
 Route::post('/store',[postcontroller::class,'store'])->name('store');
+Route::get('/all-posts', [postcontroller::class, 'allPosts'])->name('all');
 
 });
 

@@ -10,6 +10,7 @@ use App\Models\SubCategory;
 class categorycontroller extends Controller
 {
  public  function add(){
+  
    $add_category=Category::with('subcategories')->get();
    // dd($add_category);
     return view('backend.category.addcategory',compact('add_category'));
@@ -39,6 +40,45 @@ class categorycontroller extends Controller
    return $newSlug;
 
 }
+
+
+
+// *
+public function editCategory(Category $category)
+{
+    $editedCategory = $category;
+    $add_category  = Category::latest()->get();
+    return view('backend.category.addCategory', compact('add_category', 'editedCategory'));
+}
+
+
+public function updateCategory(Request $request, Category $category)
+{
+
+    
+    //*VALIDATION RULES
+    $request->validate([
+        'title' => 'required|string',
+    ], [
+        'title.required' => 'Please enter a Category Title',
+
+    ]);
+
+
+    $category->title = $request->title;
+    $category->slug = $this->slugGenerator($request->title, $request->slug);
+    $category->save();
+    return redirect()->route('category.add');
+}
+
+
+public function deleteCategory(Category $category)
+{
+    $category->delete();
+    return back();
+}
+
+
 
 
 

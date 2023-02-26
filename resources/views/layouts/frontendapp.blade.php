@@ -18,7 +18,7 @@
 </head>
 
 <body>
-{{$categories}}
+<!-- {{$categories}} -->
 <!-- preloader -->
 <!-- <div id="preloader">
 	<div class="book">
@@ -94,16 +94,20 @@
 								<!-- menus -->
 								<ul class="navbar-nav">
 									<li class="nav-item  active">
-										<a class="nav-link" href="index.html">Home</a>
+										<a class="nav-link" href="{{ url('/') }}">Home</a>
 										
 									</li>
 									@foreach($categories as $categoriey)
 									<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" href="classic.html#">{{$categoriey->title}}</a>
+										<a class="nav-link dropdown-toggle" href="{{ route('frontend.category', $categoriey) }}">{{$categoriey->title}}</a>
+										@if($categoriey->subcategories)
 										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="category.html">Category</a></li>
+											@foreach($categoriey->subcategories as $sub)
+											<li><a class="dropdown-item" href="{{ route('frontend.subcategory', $sub) }}">{{ $sub->title }}</a></li>
+											@endforeach
 											
 										</ul>
+										@endif
 									</li>
 									@endforeach
 									
@@ -113,7 +117,7 @@
 									</li>
 									<li class="nav-item">
 										@auth
-										<a class="nav-link" href="contact.html">your propile</a>
+										<a class="nav-link" href="{{ url('/home') }}">your propile</a>
 										@else
 										<a class="nav-link" href="{{route('login')}}">login</a>
 										@endauth
@@ -283,28 +287,34 @@
 				let	posts=[]
 				// console.log(result[0]['title']);
 				results.forEach(result=>{
-					console.table(result)
-					let li=<li >
-				<a href="#">
-					<div class="row">
-						<div class="col-lg-3">
-						
-						</div>
-						
-						<div class="col-lg-9">
+					let url  = "{{ route('frontend.show', 'mySlug') }}";
+					let replaceUrl = url.replace("mySlug", result.slug);
+					
+					console.log(replaceUrl)
+						let li= `
+						<li >
+					<a href="${result.slug}">
+						<div class="row">
+							<div class="col-lg-3">
+							<img src="http://127.0.0.1:8000/storage/${result.img}"/>
+							</div>
+							
+							<div class="col-lg-9">
 
-						<h4>${result.title}</h4>
+							<h4>${result.title}</h4>
+							</div>
 						</div>
-					</div>
-				</a>
-			</li>;
-			
-			posts.push(li);
-				});
-				$('#searchshow').html(posts)
+					</a>
+				</li>`;
+				
+				posts.push(li);
+					});
+					$('#searchshow').html(posts)
 			
 			},
+			error: function(error){
 
+			}
 
 		})
 
