@@ -27,6 +27,9 @@ Route::get('/search', [homecontroller::class, 'searchPost'])->name('frontend.sea
 Route::get('/front/category/{category:slug}', [homecontroller::class, 'showCategoryPost'])->name('frontend.category');
 Route::get('/front/subcategory/{subcategory:slug}', [homecontroller::class, 'showSubCategoryPost'])->name('frontend.subcategory');
 Route::get('/post/{slug}', [homecontroller::class, 'showPost'])->name('frontend.show');
+Route::get('/google/login',[SocioalLogincontroller::class,'googlelogin'])->name('google.login');
+Route::get('/google/redirect',[SocioalLogincontroller::class,'googleredirect'])->name('google.redirect');
+
 Route::middleware('auth')->group(function(){
 
 
@@ -69,7 +72,6 @@ Route::get('/all-posts', [postcontroller::class, 'allPosts'])->name('all');
 
 });
 
-Route::get('/google/login',[SocioalLogincontroller::class,'googlelogin'])->name('google.login');
-Route::get('/google/redirect',[SocioalLogincontroller::class,'googleredirect'])->name('google.redirect');
+
 
 });
