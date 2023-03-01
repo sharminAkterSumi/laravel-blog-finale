@@ -293,7 +293,7 @@
 					console.log(replaceUrl)
 						let li= `
 						<li >
-					<a href="${result.slug}">
+					<a href="${replaceUrl}">
 						<div class="row">
 							<div class="col-lg-3">
 							<img src="http://127.0.0.1:8000/storage/${result.img}"/>

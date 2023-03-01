@@ -20,7 +20,7 @@
     @foreach ($posts as $key=>$post)
     <tr>
         <td>{{ ++$key }}</td>
-        <td><img src="{{ asset('storage/'.$post->featured_img) }}" alt="{{ $post->title }}" style="max-height: 120px;border-radius: 10px;"></td>
+        <td><img src="{{ asset('storage/'.$post->img) }}" alt="{{ $post->title }}" style="max-height: 120px;border-radius: 10px;"></td>
         <td>{{ $post->title }}</td>
         <td>
             <a href="" class="btn btn-primary btn-sm">Edit</a>

@@ -15,7 +15,7 @@ class SocioalLogincontroller extends Controller
 *GOOGLE_CLIENT_SECRET=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
 *GOOGLE_REDIRECT_URL= http://localhost:8000/google/redirect
    */
-  // return Socialite::driver('google')->redirect();
+  return Socialite::driver('google')->redirect();
  }
  public function googleredirect()
  {

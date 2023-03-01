@@ -34,6 +34,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
                 <div class="side-nav__devider my-6"></div>
                 <ul>
+                    @role('admin')
                     <li>
                         <a href="javascript:;" class="side-menu side-menu--active side-menu--open">
                             <div class="side-menu__icon"> <i data-feather="home"></i> </div>
@@ -52,6 +53,10 @@ License: You must have a valid license purchased only from themeforest(the above
                            
                         </ul>
                     </li>
+                    @endrole
+                    
+
+
                     <li>
                         <a href="javascript:;" class="side-menu side-menu--active side-menu--open">
                             <div class="side-menu__icon"> <i data-feather="home"></i> </div>
