@@ -75,7 +75,7 @@ public function updateCategory(Request $request, Category $category)
 public function deleteCategory(Category $category)
 {
     $category->delete();
-    return back();
+    return redirect()->route('category.add');
 }
 
 

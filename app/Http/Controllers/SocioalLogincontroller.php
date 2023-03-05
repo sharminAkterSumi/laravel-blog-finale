@@ -19,14 +19,14 @@ class SocioalLogincontroller extends Controller
  }
  public function googleredirect()
  {
-//   $user = Socialite::driver('google')->stateless()->user();
+ $user = Socialite::driver('google')->stateless()->user();
 
-//   // $newuser= User::create([
-//   //   'name'=>,
-//   //   'email'=>,
-//   //   'password'=>,
-//   // ])
-//   //   dd($user);
+  // $newuser= User::create([
+  //   'name'=> ,
+  //   'email'=>,
+  //   'password'=> Hash::make(uniqid()),
+  // ])
+  // dd($user);
 
  }
 }
